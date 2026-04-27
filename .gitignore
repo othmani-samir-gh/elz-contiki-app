@@ -1,0 +1,7 @@
+*.co
+*.elf
+*.hex
+*.obj
+symbols.c
+symbols.h
+build/
