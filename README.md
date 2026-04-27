@@ -1,5 +1,5 @@
-Testing the ELZ v1.0 Algorithm
-in Contiki-NG / COOJA
+# Testing the ELZ v1.0 Algorithm
+# # in Contiki-NG / COOJA
 
 Step 1: Install Docker
 sudo apt update
