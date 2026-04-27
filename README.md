@@ -29,8 +29,8 @@ cd tools/cooja
 In COOJA GUI: File -> Open Simulation -> Browse to:
   examples/elz-contiki-app/simulations/scenario-a-star.csc
 Click Start — you should see nodes exchanging packets.
-1.2 Directory Structure for elz Project
-elz-contiki-app/
+### 1.2 Directory Structure for elz Project
+#### elz-contiki-app/
     elz/                 
       Makefile
       project-conf.h
