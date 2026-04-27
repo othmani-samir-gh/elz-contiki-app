@@ -1,20 +1,20 @@
 # Testing the ELZ v1.0 Algorithm
 ## in Contiki-NG / COOJA
 
-Step 1: Install Docker
+### Step 1: Install Docker
 sudo apt update
 sudo apt install docker.io docker-compose-v2
 sudo usermod -aG docker $USER
 
-Step 2: Clone Contiki-NG
+### Step 2: Clone Contiki-NG
 git clone https://github.com/contiki-ng/contiki-ng.git
 cd contiki-ng
 git submodule update --init --recursive
 
-Step 3: Pull the Docker image
+### Step 3: Pull the Docker image
 docker pull contiker/contiki-ng
 
-Step 4: Launch COOJA
+### Step 4: Launch COOJA
 docker run --privileged \
   --net=host \
   -e DISPLAY=$DISPLAY \
@@ -25,7 +25,7 @@ docker run --privileged \
 cd tools/cooja
 ./gradlew run   
 
-Step 5: Verify with a test simulation
+### Step 5: Verify with a test simulation
 In COOJA GUI: File -> Open Simulation -> Browse to:
   examples/elz-contiki-app/simulations/scenario-a-star.csc
 Click Start — you should see nodes exchanging packets.
@@ -54,12 +54,12 @@ elz-contiki-app/
         plot-results.py
         run-batch.py
 
-Contiki-NG Stack Patches
+###Contiki-NG Stack Patches
 Several ELZ features require minor modifications to the Contiki-NG source tree. 
 Patch: Runtime-Adjustable CSMA Parameters
 By default, macMinBE and macMaxBE are compile-time constants. This patch makes them runtime-adjustable variables.
 
-File: os/net/mac/csma/csma.h
+#### File: os/net/mac/csma/csma.h
 Add the following extern declarations:
 /* --- ELZ PATCH: runtime CSMA parameters --- */
 extern uint8_t csma_min_be;
@@ -67,7 +67,7 @@ extern uint8_t csma_max_be;
 extern uint8_t csma_max_backoff;
 /* --- END PATCH --- */
 
-File: os/net/mac/csma/csma-output.c
+#### File: os/net/mac/csma/csma-output.c
 /* IN send_one_packet(): */
 /*ADD  BEFORE the call to NETSTACK_RADIO.prepare(): */
  
@@ -81,7 +81,7 @@ File: os/net/mac/csma/csma-output.c
 #endif
 /* --- END PATCH --- */
 
-Building the Firmware
+#Building the Firmware
 
 make TARGET=cooja clean
 make TARGET=cooja elz-coordinator
